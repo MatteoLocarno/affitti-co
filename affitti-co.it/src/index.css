@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  /* background: #2b2361; */
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden !important;
+}
+
+html, body {
+  background: #ffffff;
+  overflow-x: hidden !important;
+}
+
+/* Responsive font size per mobile */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+  h1, .text-4xl, .text-5xl {
+    font-size: 1.7rem !important;
+    line-height: 2.1rem !important;
+  }
+  h2, .text-3xl {
+    font-size: 1.3rem !important;
+    line-height: 1.7rem !important;
+  }
+  h3, .text-2xl, .text-xl {
+    font-size: 1.1rem !important;
+    line-height: 1.4rem !important;
+  }
+  .text-lg {
+    font-size: 1rem !important;
+  }
+  .text-base, body, p, label, select, input, button {
+    font-size: 0.95rem !important;
+  }
+  .text-sm {
+    font-size: 0.85rem !important;
+  }
+  .text-xs {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Effetto 3D depliant */
+.perspective-3d {
+  perspective: 1200px;
+}
+.-rotate-y-6 {
+  transform: rotateY(-6deg);
+}
+.rotate-y-6 {
+  transform: rotateY(6deg);
+}
+.hover\:rotate-y-0:hover {
+  transform: rotateY(0deg) !important;
+}
+
+/* Responsive header actions: selettore lingua + bottone immobili */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 180px;
+  max-width: 320px;
+}
+.immobili-btn {
+  min-width: 160px;
+  padding: 8px 16px;
+  font-size: 1em;
+}
+.language-switcher {
+  margin-bottom: 4px;
+  font-size: 0.95em;
+}
+@media (max-width: 1100px) {
+  .header-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    max-width: 100%;
+  }
+  .immobili-btn {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+}
+@media (max-width: 700px) {
+  .header-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 100%;
+  }
+  .immobili-btn {
+    width: 100%;
+    margin-top: 4px;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-24px); }
+}
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+.animate-float-fast {
+  animation: float-fast 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 2px white,
+                 0 0 4px white,
+                 0 0 6px #cebd6d;
+  }
+  50% {
+    text-shadow: 0 0 3px white,
+                 0 0 5px white,
+                 0 0 7px #cebd6d;
+  }
+  100% {
+    text-shadow: 0 0 2px white,
+                 0 0 4px white,
+                 0 0 6px #cebd6d;
+  }
+}
+
+.glow-effect {
+  animation: glow 4s ease-in-out infinite;
+}
+
+.glow-effect-blue {
+  animation: glow-blue 4s ease-in-out infinite;
+}
+
+@keyframes glow-blue {
+  0% {
+    text-shadow: 0 0 2px white,
+                 0 0 4px white,
+                 0 0 6px #2b2361;
+  }
+  50% {
+    text-shadow: 0 0 3px white,
+                 0 0 5px white,
+                 0 0 7px #2b2361;
+  }
+  100% {
+    text-shadow: 0 0 2px white,
+                 0 0 4px white,
+                 0 0 6px #2b2361;
+  }
+}
