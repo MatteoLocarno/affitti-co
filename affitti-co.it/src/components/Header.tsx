@@ -1,15 +1,15 @@
+
 import { useState } from "react";
-// Sostituisco Link e usePathname di Next.js con react-router-dom
 import { Link, useLocation } from "react-router-dom";
 import GoogleTranslateToEnglishButton from './GoogleTranslateToEnglishButton';
-// TODO: Adattare LanguageToggle se serve
-// import { LanguageToggle } from './Footer';
+import { LanguageToggle } from './Footer';
 import { FaHome } from 'react-icons/fa';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const pathname = location.pathname;
+  
   return (
     <header className="fixed w-full z-50 bg-white/70 backdrop-blur-md border-b border-[#cebd6d]/40 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-3 sm:px-4 md:px-6 py-2 sm:py-3">
@@ -22,7 +22,8 @@ export default function Header() {
               width={110}
               height={36}
               className="object-contain w-24 sm:w-28 md:w-32 lg:w-36 h-auto transition-all duration-200"
-              style={{maxWidth: 144, height: 'auto'}} />
+              style={{maxWidth: 144, height: 'auto'}}
+            />
           </Link>
         </div>
         {/* Menu centrale desktop */}
@@ -39,14 +40,14 @@ export default function Header() {
           {/* Bottone call-to-action desktop/tablet: visibile solo da md in su */}
           <Link to="/tutti-gli-immobili" className="hidden md:block bg-[#142047] text-white px-4 sm:px-5 py-2 rounded-lg font-semibold shadow hover:bg-[#cebd6d] hover:text-[#142047] transition-colors whitespace-nowrap w-full block text-center text-base md:text-base lg:text-lg immobili-btn">Tutti gli Immobili</Link>
           {/* Selettore lingua tablet/laptop: inline, affiancato al bottone */}
-          {/* <div className="hidden md:flex lg:hidden items-center ml-0 md:ml-6">
+          <div className="hidden md:flex lg:hidden items-center ml-0 md:ml-6">
             <LanguageToggle />
-          </div> */}
+          </div>
         </div>
         {/* Selettore lingua desktop: fisso in alto a destra, solo su lg+ */}
-        {/* <div className="hidden lg:block" style={{ position: 'fixed', top: 18, right: 24, zIndex: 1000 }}>
+        <div className="hidden lg:block" style={{ position: 'fixed', top: 18, right: 24, zIndex: 1000 }}>
           <LanguageToggle />
-        </div> */}
+        </div>
         {/* Hamburger mobile */}
         <div className="md:hidden flex items-center">
           <button className="w-10 h-10 flex flex-col justify-center items-center" onClick={() => setOpen(!open)} aria-label="Menu">
@@ -72,9 +73,9 @@ export default function Header() {
               <Link to="/services" className={`text-lg font-semibold text-[#142047] hover:text-[#cebd6d] transition-colors w-full text-center ${pathname === '/services' ? 'font-bold' : ''}`} onClick={() => setOpen(false)}>Servizi</Link>
               <Link to="/contatti" className={`text-lg font-semibold text-[#142047] hover:text-[#cebd6d] transition-colors w-full text-center ${pathname === '/contatti' ? 'font-bold' : ''}`} onClick={() => setOpen(false)}>Contatti</Link>
               <Link to="/tutti-gli-immobili" className="mt-8 bg-[#142047] text-white px-8 py-3 rounded-xl font-bold shadow hover:bg-[#cebd6d] hover:text-[#142047] transition-colors text-lg w-full max-w-xs text-center" onClick={() => setOpen(false)}>Tutti gli Immobili</Link>
-              {/* <div className="mt-8 flex justify-center w-full">
+              <div className="mt-8 flex justify-center w-full">
                 <LanguageToggle />
-              </div> */}
+              </div>
             </nav>
           </div>
         )}

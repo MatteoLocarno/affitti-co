@@ -3,33 +3,41 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HomeClient from '../components/HomeClient';
 import { propertyService } from '../services/propertyService';
+import type { Property } from '../types/property';
 
-const Home: React.FC = () => {
-  const [properties, setProperties] = useState<any[]>([]);
+export default function Home() {
+  const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    propertyService.getProperties(1, 10)
-      .then((data) => {
-        setProperties(data.properties || []);
+    const loadProperties = async () => {
+      try {
+        const response = await propertyService.getProperties(1, 10);
+        setProperties(response.properties);
+      } catch (error) {
+        console.error('Errore nel caricamento delle proprietà:', error);
+        setProperties([]);
+      } finally {
         setLoading(false);
-      })
-      .catch((err) => {
-        setError('Errore nel caricamento delle proprietà');
-        setLoading(false);
-      });
+      }
+    };
+
+    loadProperties();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl text-gray-600">Caricamento...</div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <Header />
-      {loading && <div>Caricamento...</div>}
-      {error && <div>{error}</div>}
-      {!loading && !error && <HomeClient properties={properties} />}
+      <HomeClient properties={properties} />
       <Footer />
     </div>
   );
-};
-
-export default Home; 
+} 

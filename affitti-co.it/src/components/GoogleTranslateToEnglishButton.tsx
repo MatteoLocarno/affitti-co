@@ -1,5 +1,7 @@
+
 import { useEffect } from "react";
 
+// Aggiunta dichiarazioni per evitare errori TS
 declare global {
   interface Window {
     googleTranslateElementInit?: () => void;
@@ -7,7 +9,8 @@ declare global {
   }
 }
 
-function GoogleTranslateToEnglishButton() {
+export default function GoogleTranslateToEnglishButton() {
+  // Carica lo script di Google Translate solo una volta
   useEffect(() => {
     if (document.getElementById("google-translate-script")) return;
     const script = document.createElement("script");
@@ -16,6 +19,7 @@ function GoogleTranslateToEnglishButton() {
     script.async = true;
     script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     document.body.appendChild(script);
+    // Inizializza il widget in modo invisibile
     window.googleTranslateElementInit = function () {
       new window.google.translate.TranslateElement({
         pageLanguage: "it",
@@ -26,7 +30,9 @@ function GoogleTranslateToEnglishButton() {
     };
   }, []);
 
+  // Funzione per attivare la traduzione in inglese
   const translateToEnglish = () => {
+    // Simula la selezione della lingua inglese nel widget nascosto
     const select = document.querySelector("select.goog-te-combo") as HTMLSelectElement | null;
     if (select) {
       select.value = "en";
@@ -60,6 +66,4 @@ function GoogleTranslateToEnglishButton() {
       </button>
     </>
   );
-}
-
-export default GoogleTranslateToEnglishButton; 
+} 
